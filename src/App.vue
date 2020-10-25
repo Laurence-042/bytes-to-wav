@@ -5,18 +5,37 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/> -->
+    <a href="https://github.com/Laurence-042/bytes-to-wav"
+      >如果你对源码感兴趣的话，点这里即可访问github仓库。祝你玩的愉快~</a
+    >
 
     <input
       type="file"
       label="选择待处理文件"
-      @change="inputFile=$event.target.files[0];process()"
+      style="width: 50%;border-style: dashed solid;"
+      @change="
+        inputFile = $event.target.files[0]
+        process()
+      "
     />
 
     <div>
-      <input type="radio" id="in" value="in" v-model="processMode" @change="process" />
+      <input
+        type="radio"
+        id="in"
+        value="in"
+        v-model="processMode"
+        @change="process"
+      />
       <label for="in">将文件写入wav</label>
       <br />
-      <input type="radio" id="out" value="out" v-model="processMode" @change="process" />
+      <input
+        type="radio"
+        id="out"
+        value="out"
+        v-model="processMode"
+        @change="process"
+      />
       <label for="out">从wav中读出文件</label>
       <!-- <br />
       <span>Picked: {{ picked }}</span> -->
@@ -61,7 +80,7 @@ export default {
 
       reader.onload = (e) => {
         let wavAudioData = new Uint8Array(e.target.result)
-        let wavData = WavGenerator.generateWav(wavAudioData,file.name)
+        let wavData = WavGenerator.generateWav(wavAudioData, file.name)
         let wavBlob = new Blob([wavData])
 
         this.getFileDownloadData(wavBlob, 'hello.wav')
@@ -95,8 +114,8 @@ export default {
   color: #2c3e50;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
 #nav {
